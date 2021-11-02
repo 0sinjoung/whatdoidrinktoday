@@ -1,0 +1,124 @@
+/* CSS Variable */
+:root {
+  --colorWhite: #FFFFFF;
+  --colorGrey: #707070;
+  --colorBlack: #000000;
+  --colorMain: #F4F3F8;
+  --colorMainDeep: #959BA9;
+  --colorPoint: #9B3239;
+  --colorPointDeep: #8C232C;
+  --colorTest: #A9C8B8;
+  --colorBaseGrey: #EDEDED;
+  --colorLightGrey: #F1F1F5;
+  --fontColorBlack: #191919;
+
+  /* font weight*/
+  --fontRegular: 400;
+  --fontbold: 700;
+  --fontWeight: 900;
+
+  /* font size*/
+  --fontFooter: 12px;
+  --fontSmall: 14px;
+  --fontBase: 16px;
+  --fontLarge: 18px;
+  --fontTitle: 40px;
+
+  /* margin */
+  --baseMargin: 8px;
+
+  /* contents size */
+  --sizeButton: 240px;
+
+  /* animation duration */
+  --duration-basic: 400ms
+}
+
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, input {
+  outline: 0;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+}
+
+ol, ul, dl, li, dt, dd {
+  display: block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Container */
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--colorMainDeep);
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  background-color: var(--colorMain);
+  /* overflow: hidden; */
+  position: relative;
+}
+
+.slide-wrap {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  transition: transform var(--duration-basic);
+}
+
+.item {
+  margin-right: 10px;
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  background-color: var(--colorTest);
+}

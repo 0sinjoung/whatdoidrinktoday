@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "question": "아이스 먹을까? 아니면 따뜻하게?",
+    "answers": [
+      {
+        "num": 1, 
+        "answer": "얼어죽어도 아이스",
+        "code": "ICE"
+      },
+      {
+        "num": 2, 
+        "answer": "따뜻하게",
+        "code": "HOT"
+      },
+      {
+        "num": 3, 
+        "answer": "상관없어",
+        "code": "HOT"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "나는 카페인이",
+    "answers": [
+      {
+        "num": 1, 
+        "answer": "필요해",
+        "code": "CY"
+      },
+      {
+        "num": 2, 
+        "answer": "필요하지 않아",
+        "code": "CN"
+      },
+      {
+        "num": 3, 
+        "answer": "상관없어",
+        "code": "CY"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "우유는",
+    "answers": [
+      {
+        "num": 1, 
+        "answer": "너무 좋지",
+        "code": "MY"
+      },
+      {
+        "num": 2, 
+        "answer": "싫어",
+        "code": "MN"
+      },
+      {
+        "num": 3, 
+        "answer": "상관없어",
+        "code": "MY"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "오늘은 달달하게",
+    "answers": [
+      {
+        "num": 1, 
+        "answer": "단게 먹고싶어",
+        "code": "SY"
+      },
+      {
+        "num": 2, 
+        "answer": "달지 않은게 좋아",
+        "code": "SN"
+      },
+      {
+        "num": 3, 
+        "answer": "상관없어",
+        "code": "SY"
+      }
+    ]
+  }
+]

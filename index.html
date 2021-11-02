@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>What do I drink today?</title>
+</head>
+<body>
+  <div class="container">
+    <div id="app">
+      <div class="slide-wrap">
+        <div class="item">
+          <button v-on:click="nextSlide(1)">시작하기</button>
+        </div>
+        <div class="item">
+          <button v-on:click="[nextSlide(2), selectBrand('starbucks')]">스타벅스</button>
+          <button v-on:click="[nextSlide(2), selectBrand('idiya')]">이디야</button>
+        </div>
+        <div class="item">
+          <p>{{user.brand}}</p>
+          <input type="text" v-model.trim="user.name" placeholder="닉네임을 입력해주세요">
+          <p>{{user.name}}</p>
+          <button v-bind:disabled="user.name==false" v-on:click="nextSlide(3)">주문하기</button>
+        </div>
+        <my-question v-for="item in questionsDataArr" v-key="item." v-bind:object="item.id" v-on:show-log="nextSlide(3+item.id)"
+        ></my-question>
+      </div>
+      
+    </div>
+  </div>
+
+
+  <script>
+    const myQuestion = {
+      props: ["object"],
+      template: `<div class="item">
+          <p>Q{{ object.id }}</p>
+          <p>{{ object.question }}</p>
+          <button v-for="answer in object.answers" v-on:click="showLog">
+            {{answer.num}}{{answer.answer}}
+          </button>
+        </div>`,
+      methods: {
+        showLog: function() {
+          this.$emit('show-log');
+        }
+      }
+    }
+  
+    new Vue({
+      el: "#app",
+      data: {
+        questionsDataArr: [],
+        user: {
+          name: "",
+          brand: "",
+          code: ""
+        }
+      },
+      components: {
+        'my-question': myQuestion
+      },
+      mounted: function () {
+        axios.get("./assets/data/questions.json")
+        .then(response => response.data)
+        .then(data => (this.questionsDataArr = data))
+      },
+      methods: {
+        nextSlide: function(n) {
+          const slide = document.querySelector('.slide-wrap');
+          slide.style.transform = `translateX(-${100 * n}%)`
+        },
+        selectBrand: function(brand) {
+          this.user.brand = brand;
+        }
+      }
+    })
+  </script>
+  <script>
+    // qIdx 이동
+    function goToQIdx(x) {
+      let itemWidth = qItem[qIdx].clientWidth;
+      qIdx += x;
+
+      if(qIdx < 0) {
+        qIdx = 0;
+      } else if (qIdx >= qItem.length - 1) {
+        qIdx = qItem.length - 1;
+      }
+
+      qItems.style.transform = `translateX(${-(itemWidth) * qIdx}px)`;
+      fadeInElements();
+    }
+
+    // next 이동
+    function nextQItems() {
+      goToQIdx(1);
+    }
+
+    // prev 이동
+    function prevQItems() {
+      goToQIdx(-1);
+    }
+  </script>
+</body>
+</html>
