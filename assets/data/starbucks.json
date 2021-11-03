@@ -1,0 +1,101 @@
+{
+  "drinks": [
+    {
+      "code": "hotcymysy",
+      "name": "토피 넛 라떼",
+      "desc": "스타벅스의 겨울 시그니처 음료 더 이상의 다른 설명은 필요 없는 스타벅스 정통의 오리지널 토피 넛 라떼",
+      "image": "./assets/image/starbucks/hotcymysy.jpg"
+    },
+    {
+      "code": "hotcymysn",
+      "name": "카푸치노",
+      "desc": "풍부하고 진한 에스프레소에 따뜻한 우유와 벨벳 같은 우유 거품이 1:1 비율로 어우러져 마무리된 커피 음료",
+      "image": "./assets/image/starbucks/hotcymysn.jpg"
+    },
+    {
+      "code": "hotcymnsy",
+      "name": "에스프레소 콘 파나",
+      "desc": "신선한 에스프레소 샷에 풍부한 휘핑크림을 얹은 커피 음료로서, 뜨거운 커피의 맛과 차갑고 달콤한 생크림의 맛을 같이 즐길 수 있는 커피 음료",
+      "image": "./assets/image/starbucks/hotcymnsy.jpg"
+    },
+    {
+      "code": "hotcymnsn",
+      "name": "오늘의 커피",
+      "desc": "신선하게 브루드(Brewed)되어 원두의 다양함이 살아있는 커피",
+      "image": "./assets/image/starbucks/hotcymnsn.jpg"
+    },
+    {
+      "code": "hotcnmysy",
+      "name": "시그니처 핫 초콜릿",
+      "desc": "깊고 진한 초콜릿과 부드러운 휘핑크림이 입안에서 사르르 녹는 프리미엄 초콜릿 음료",
+      "image": "./assets/image/starbucks/hotcnmysy.jpg"
+    },
+    {
+      "code": "hotcnmysn",
+      "name": "차이 티 라떼",
+      "desc": "스파이시한 향과 독특한 계피향, 달콤한 차이로 만든 부드러운 티 라떼",
+      "image": "./assets/image/starbucks/hotcnmysn.jpg"
+    },
+    {
+      "code": "hotcnmnsy",
+      "name": "자몽 허니 블랙 티",
+      "desc": "새콤한 자몽과 달콤한 꿀이 깊고 그윽한 풍미의 스타벅스 티바나 블랙 티의 조화",
+      "image": "./assets/image/starbucks/hotcnmnsy.jpg"
+    },
+    {
+      "code": "hotcnmnsn",
+      "name": "제주 유기 녹차",
+      "desc": "우수한 품질의 제주도 유기농 녹차로 만든 맑은 수색과 신선한 향, 맛이 뛰어난 녹차",
+      "image": "./assets/image/starbucks/hotcnmnsn.jpg"
+    },
+    {
+      "code": "icecymysy",
+      "name": "아이스 토피 넛 라떼",
+      "desc": "스타벅스의 겨울 시그니처 음료 더 이상의 다른 설명은 필요 없는 스타벅스 정통의 오리지널 토피 넛 라떼",
+      "image": "./assets/image/starbucks/icecymysy.jpg"
+    },
+    {
+      "code": "icecymysn",
+      "name": "아이스 카페 라떼",
+      "desc": "풍부하고 진한 에스프레소가 신선한 스팀 밀크를 만나 부드러워진 커피 위에 우유 거품을 살짝 얹은 대표적인 커피 라떼",
+      "image": "./assets/image/starbucks/icecymysn.jpg"
+    },
+    {
+      "code": "icecymnsy",
+      "name": "토피 넛 콜드 브루",
+      "desc": "드디어 출시된 토피 넛 콜드 브루! 부드러운 토피 넛 폼과 어우러지는 콜드 브루의 깔끔함",
+      "image": "./assets/image/starbucks/icecymnsy.jpg"
+    },
+    {
+      "code": "icecymnsn",
+      "name": "아이스 커피",
+      "desc": "깔끔하고 상큼함이 특징인 시원한 아이스 커피",
+      "image": "./assets/image/starbucks/icecymnsn.jpg"
+    },
+    {
+      "code": "icecnmysy",
+      "name": "바닐라 크림 프라푸치노",
+      "desc": "신선한 우유와 바닐라 시럽이 어우러진 크림 프라푸치노",
+      "image": "./assets/image/starbucks/icecnmysy.jpg"
+    },
+    {
+      "code": "icecnmysn",
+      "name": "딸기 딜라이트 요거트 블렌디드",
+      "desc": "유산균이 살아있는 리얼 요거트와 풍성한 딸기 과육이 더욱 상큼하게 어우러진 과일 요거트 블렌디드",
+      "image": "./assets/image/starbucks/icecnmysn.jpg"
+    },
+    {
+      "code": "icecnmnsy",
+      "name": "패션 탱고 티 레모네이드 피지오",
+      "desc": "꽃 향기와 달콤하고 상큼한 시트러스 향을 탄산과 함께 더욱 풍부하게 느끼고 싶으시다면 패션 티 레모네이드 피지오를 선택해 보세요! 언제 찾아도 기분이 좋아지는 훌륭한 음료입니다.",
+      "image": "./assets/image/starbucks/icecnmnsy.jpg"
+    },
+    {
+      "code": "icecnmnsn",
+      "name": "아이스 제주 유기 녹차",
+      "desc": "우수한 품질의 제주도 유기농 녹차로 만든 맑은 수색과 신선한 향, 맛이 뛰어난 녹차",
+      "image": "./assets/image/starbucks/icecnmnsn.jpg"
+    }
+
+  ]
+}

@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -12,24 +15,71 @@
 <body>
   <div class="container">
     <div id="app">
+      <header id="header">
+        <button>뒤로가기</button>
+      </header>
       <div class="slide-wrap">
-        <div class="item">
-          <button v-on:click="nextSlide(1)">시작하기</button>
+        <div class="item start">
+          <span class="coffee-img"></span>
+          <div class="intro-desc">
+            <p>매일 마시는 아메리카노 말고</p>
+            <p>다른거 없을까?</p>
+            <br/>
+            <p>그럼</p>
+            <p>오늘 뭐마시지?</p>
+          </div>
+          <h1 class="title">What do I drink today</h1>
+          <button v-on:click="nextSlide(1)" class="large-btn">시작하기</button>
         </div>
-        <div class="item">
-          <button v-on:click="[nextSlide(2), selectBrand('starbucks')]">스타벅스</button>
-          <button v-on:click="[nextSlide(2), selectBrand('idiya')]">이디야</button>
+        <div class="item brand">
+          <span class="coffee-img"></span>
+          <div class="intro-desc">
+            <p>어디에서 마실까?</p>
+          </div>
+          <div class="brand-wrap">
+            <button class="brand-btn starbucks" v-on:click="[nextSlide(2), selectBrand('starbucks')]">
+              <span></span>
+            </button>
+            <button class="brand-btn ediya" v-on:click="[nextSlide(2), selectBrand('ediya')]">
+              <span></span>
+            </button>
+          </div>
         </div>
-        <div class="item">
-          <p>{{user.brand}}</p>
-          <input type="text" v-model.trim="user.name" placeholder="닉네임을 입력해주세요">
-          <p>{{user.name}}</p>
-          <button v-bind:disabled="user.name==false" v-on:click="nextSlide(3)">주문하기</button>
+        <div class="item name">
+          <span class="coffee-img"></span>
+          <div class="intro-desc">
+            <p>주문자 이름은?</p>
+          </div>
+          <input type="text"
+          class="name-input"
+          placeholder="닉네임을 입력해주세요"
+          v-model.trim="user.name" >
+          <button class="large-btn" v-bind:disabled="user.name==false" v-on:click="nextSlide(3)">주문하기</button>
+          <p>{{ user.name }}</p>
+          <p>{{ user.brand }}</p>
         </div>
-        <my-question v-for="item in questionsDataArr" v-key="item." v-bind:object="item.id" v-on:show-log="nextSlide(3+item.id)"
-        ></my-question>
+        <my-question 
+        v-for="item in questionsDataArr"
+        v-bind:key="item.id"
+        v-bind:object="item"
+        v-on:click-answer="answerFlavor"
+        >
+        </my-question>
+        <div class="item">
+          <button v-on:click="resultPage">결과보기</button>
+        </div>
+        <div class="item result">
+          <p>결과출력</p>
+          <p>{{ user.name}}님 주문하신</p>
+          <p>{{ selectedDrink.name }} 나왔습니다</p>
+          <img v-bind:src="selectedDrink.image"></img>
+          <p>{{ selectedDrink.desc }}</p>
+        </div>
       </div>
-      
+      <footer id="footer">
+        <p>What do I drink today</p>
+        <span class="in-brand">{{ user.brand }}</span>
+      </footer>
     </div>
   </div>
 
@@ -37,32 +87,69 @@
   <script>
     const myQuestion = {
       props: ["object"],
-      template: `<div class="item">
-          <p>Q{{ object.id }}</p>
-          <p>{{ object.question }}</p>
-          <button v-for="answer in object.answers" v-on:click="showLog">
-            {{answer.num}}{{answer.answer}}
-          </button>
-        </div>`,
+      template: `
+        <div class="item question">
+          <span class="q-num">Q{{ object.id }}</span>
+          <p class="q-desc"> {{ object.question }}</p>
+          <div class="answer-btn-wrap">
+            <button v-on:click="clickAnswer(object.answers[0].flavor)">
+              <span>
+                {{object.answers[0].num}}
+              </span>
+              {{object.answers[0].answer}}
+            </button>
+            <button v-on:click="clickAnswer(object.answers[1].flavor)">
+              <span>
+                {{object.answers[1].num}}
+              </span>
+              {{object.answers[1].answer}}
+            </button>
+            <button v-on:click="clickAnswer(object.answers[2].flavor)">
+              <span>
+                {{object.answers[2].num}}
+              </span>
+              {{object.answers[2].answer}}
+            </button>
+            
+          </div>
+        </div>
+      `,
       methods: {
-        showLog: function() {
-          this.$emit('show-log');
+        clickAnswer: function(flavor) {
+          this.$emit('click-answer', flavor)
         }
       }
+
     }
+
   
     new Vue({
-      el: "#app",
+      el: '#app',
       data: {
         questionsDataArr: [],
         user: {
-          name: "",
-          brand: "",
-          code: ""
+          name: '',
+          brand: '',
+          flavor: {
+            hot: true,
+            caffein: true,
+            milk: true,
+            sugar: true
+          }
+        },
+        code: '',
+        selectedDrink: {
+          name: '',
+          desc: '',
+          img: ''
+        },
+        brandColor: {
+          starbucks: 'green',
+          ediya: 'blue'
         }
       },
       components: {
-        'my-question': myQuestion
+        'my-question': myQuestion,
       },
       mounted: function () {
         axios.get("./assets/data/questions.json")
@@ -76,35 +163,61 @@
         },
         selectBrand: function(brand) {
           this.user.brand = brand;
+        },
+        answerFlavor: function(answer) {
+          const selectedFlavor = Object.keys(answer).join("");
+          const selectedValue = Object.values(answer).join("");
+
+          for(prop in this.user.flavor) {
+            if(prop === selectedFlavor) {
+              this.user.flavor[prop] = JSON.parse(selectedValue);
+              console.log(prop, this.user.flavor[prop])
+            }
+          }
+        },
+        makeDrinkCode: function() {
+          this.code = ''
+          for(prop in this.user.flavor) {
+            if(prop === 'hot') {
+              this.user.flavor[prop] ? this.code += 'hot' : this.code += 'ice' 
+            } 
+            if(prop === 'caffein') {
+              this.user.flavor[prop] ? this.code += 'cy' : this.code += 'cn' 
+            }
+            if(prop === 'milk') {
+              this.user.flavor[prop] ? this.code += 'my' : this.code += 'mn' 
+            }
+            if(prop === 'sugar') {
+              this.user.flavor[prop] ? this.code += 'sy' : this.code += 'sn' 
+            }
+          }
+          console.log(this.code)
+        },
+        loadDrink: function() {
+          const brand = this.user.brand;
+          return axios.get(`./assets/data/${brand}.json`)
+          .then(response => response.data)
+          .then(data => data.drinks)
+        },
+        selectDrink: function() {
+          this.loadDrink()
+          .then(drinks => {
+            drinks.forEach(el => {
+              console.log(el.code, this.code)
+              if(el.code === this.code) {
+                this.selectedDrink.name = el.name;
+                this.selectedDrink.desc = el.desc;
+                this.selectedDrink.image = el.image;
+              }
+            });
+          })
+        },
+        resultPage: function() {
+          this.makeDrinkCode();
+          this.selectDrink();
         }
       }
     })
-  </script>
-  <script>
-    // qIdx 이동
-    function goToQIdx(x) {
-      let itemWidth = qItem[qIdx].clientWidth;
-      qIdx += x;
-
-      if(qIdx < 0) {
-        qIdx = 0;
-      } else if (qIdx >= qItem.length - 1) {
-        qIdx = qItem.length - 1;
-      }
-
-      qItems.style.transform = `translateX(${-(itemWidth) * qIdx}px)`;
-      fadeInElements();
-    }
-
-    // next 이동
-    function nextQItems() {
-      goToQIdx(1);
-    }
-
-    // prev 이동
-    function prevQItems() {
-      goToQIdx(-1);
-    }
   </script>
 </body>
 </html>

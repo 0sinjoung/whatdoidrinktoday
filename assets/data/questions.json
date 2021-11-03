@@ -6,17 +6,17 @@
       {
         "num": 1, 
         "answer": "얼어죽어도 아이스",
-        "code": "ICE"
+        "flavor": {"hot": false}
       },
       {
         "num": 2, 
         "answer": "따뜻하게",
-        "code": "HOT"
+        "flavor": {"hot": true}
       },
       {
         "num": 3, 
         "answer": "상관없어",
-        "code": "HOT"
+        "flavor": {"hot": true}
       }
     ]
   },
@@ -27,17 +27,17 @@
       {
         "num": 1, 
         "answer": "필요해",
-        "code": "CY"
+        "flavor": {"caffein": true}
       },
       {
         "num": 2, 
         "answer": "필요하지 않아",
-        "code": "CN"
+        "flavor": {"caffein": false}
       },
       {
         "num": 3, 
         "answer": "상관없어",
-        "code": "CY"
+        "flavor": {"caffein": true}
       }
     ]
   },
@@ -48,17 +48,17 @@
       {
         "num": 1, 
         "answer": "너무 좋지",
-        "code": "MY"
+        "flavor": {"milk": true}
       },
       {
         "num": 2, 
         "answer": "싫어",
-        "code": "MN"
+        "flavor": {"milk": false}
       },
       {
         "num": 3, 
         "answer": "상관없어",
-        "code": "MY"
+        "flavor": {"milk": true}
       }
     ]
   },
@@ -69,17 +69,17 @@
       {
         "num": 1, 
         "answer": "단게 먹고싶어",
-        "code": "SY"
+        "flavor": {"sugar": true}
       },
       {
         "num": 2, 
         "answer": "달지 않은게 좋아",
-        "code": "SN"
+        "flavor": {"sugar": false}
       },
       {
         "num": 3, 
         "answer": "상관없어",
-        "code": "SY"
+        "flavor": {"sugar": true}
       }
     ]
   }
