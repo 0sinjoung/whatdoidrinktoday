@@ -277,6 +277,7 @@ body {
   background-color: var(--colorPoint);
   transform: translateX(-100%);
   animation: calc(var(--duration-basic) * 3) ease-in  var(--duration-basic) forwards runProgressBar;
+  overflow: hidden;
 }
 @keyframes runProgressBar {
   0% {transform: translateX(-100%)}
@@ -291,6 +292,7 @@ body {
   background-image: none;
   color: var(--colorWhite);
   background-color: var(--colorMainDeep);
+  overflow-y: scroll;
 }
 .result-user-name span {
   font-weight: var(--fontBold);
