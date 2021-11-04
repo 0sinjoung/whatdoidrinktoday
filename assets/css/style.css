@@ -6,7 +6,7 @@
   --colorMain: #F4F3F8;
   --colorMainDeep: #959BA9;
   --colorPoint: #9B3239;
-  --colorPointDeep: #8C232C;
+  --colorPointDeep: #6C1C23;
   --colorLightGrey: #F1F1F5;
   --fontColorBlack: #191919;
   --colorStarbucks: #0E7042;
@@ -90,6 +90,7 @@ ol, ul, dl, li, dt, dd {
 }
 
 body {
+  width: 100%;
   font-family: 'Roboto', 'Noto Sans KR', serif;
   font-size: var(--fontBase);
   font-weight: var(--fontRegular);
@@ -98,13 +99,6 @@ body {
   cursor: default;
 }
 
-
-/* Container */
-.container {
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--colorMainDeep);
-}
 
 #app {
   position: relative;
@@ -131,19 +125,20 @@ body {
 .slide-wrap {
   width: 100%;
   height: 100%;
-  position: absolute;
+  position:relative;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   display: flex;
   flex-direction: row;
   transition: transform var(--duration-basic);
 }
 
 .item {
-  position: relative;
-  padding: 15vh calc(var(--baseMargin) * 3) 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  padding: 15vh calc(var(--baseMargin) * 3) 0;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -217,7 +212,7 @@ body {
 .name-input {
   width: 240px;
   height: 64px;
-  font-size: var(--fontSmall);
+  font-size: var(--fontRegular);
   text-align: center;
   border-radius: calc(var(--baseMargin) * 2);
   box-shadow: inset 3px 3px 6px #00000029;
@@ -292,7 +287,7 @@ body {
   background-image: none;
   color: var(--colorWhite);
   background-color: var(--colorMainDeep);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .result-user-name span {
   font-weight: var(--fontBold);
@@ -303,8 +298,8 @@ body {
   margin: calc(var(--baseMargin) * 2) 0;
 }
 .result-img {
-  width: 320px;
-  height: 320px;
+  width: 280px;
+  height: 280px;
   flex-shrink: 0;
   overflow: hidden;
   border-radius: calc(var(--baseMargin) * 4);
@@ -321,6 +316,7 @@ body {
 }
 
 .copyright {
+  width: 100%;
   font-size: var(--fontFooter);
   color: var(--colorWhite);
   padding: calc(var(--baseMargin) * 2) 0;
@@ -332,7 +328,7 @@ body {
 
 /* Footer */
 #footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   z-index: 100;
@@ -415,6 +411,9 @@ body {
 .large-btn.fadeout {
   display: none;
 }
+.large-btn.name:disabled {
+  background-color: var(--colorGrey);
+}
 
 .undo-btn {
   width: 120px;
@@ -425,7 +424,7 @@ body {
   font-size: var(--fontRegular);
   font-weight: var(--fontBold);
   color: var(--colorWhite);
-  background-color: var(--colorPointDeep);
+  background-color: var(--colorPoint);
   border-radius: calc(var(--baseMargin) * 2);
   box-shadow: 0px 3px 6px #00000029;
   transition: all var(--duration-basic);
@@ -449,6 +448,7 @@ body {
 
 .prev-btn.starbucks {
   color: var(--colorStarbucksBg);
+  opacity: 80%;
 }
 .footer-brand .starbucks ,
 .starbucks .question .q-num {
@@ -496,11 +496,16 @@ body {
   }
   .item.result {
     padding: 15vh 5vh 0;
+    overflow-y: hidden;
   }
+  .result-img {
+    width: 320px;
+    height: 320px;
+  }
+  
   .copyright {
     position: absolute;
-    padding: 0 5vh 3vh;
+    padding: 0 calc(var(--baseMargin) * 3) calc(var(--baseMargin) * 5);
     bottom: 0;
   }
-
 }

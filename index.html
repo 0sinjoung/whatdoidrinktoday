@@ -15,107 +15,106 @@
   <link rel="shortcut icon" href="./assets/image/starbucks_cup.png" type="image/x-icon">
 </head>
 <body>
-  <div class="container">
-    <div id="app">
-      <header id="header">
-        <button 
-        class="prev-btn"
-        v-bind:class="user.brand"
-        v-show="currentIdx > 2 && !resultWaiting" 
-        v-on:click="prevSlide"
-        >
-          <i class="fas fa-arrow-circle-left"></i>
-        </button>
-      </header>
-      <div class="slide-wrap" v-bind:class="user.brand">
-        <div class="item start">
-          <span class="coffee-img"></span>
-          <div class="intro-desc">
-            <p>매일 마시는 아메리카노 말고</p>
-            <p>다른거 없을까?</p>
-            <br/>
-            <p>그럼</p>
-            <p>오늘 뭐마시지?</p>
-          </div>
-          <h1 class="title">What do I drink today</h1>
-          <button v-on:click="nextSlide" class="large-btn">시작하기</button>
+  <div id="app">
+    <header id="header">
+      <button 
+      class="prev-btn"
+      v-bind:class="user.brand"
+      v-show="currentIdx > 2 && !resultWaiting" 
+      v-on:click="prevSlide"
+      >
+        <i class="fas fa-arrow-circle-left"></i>
+      </button>
+    </header>
+    <div class="slide-wrap" v-bind:class="user.brand">
+      <div class="item start">
+        <span class="coffee-img"></span>
+        <div class="intro-desc">
+          <p>매일 마시는 아메리카노 말고</p>
+          <p>다른거 없을까?</p>
+          <br/>
+          <p>그럼</p>
+          <p>오늘 뭐마시지?</p>
         </div>
-        <div class="item brand">
-          <span class="coffee-img"></span>
-          <div class="intro-desc">
-            <p>어디에서 마실까?</p>
-          </div>
-          <div class="brand-wrap">
-            <button class="brand-btn starbucks" v-on:click="[nextSlide(), selectBrand('starbucks')]">
-              <span></span>
-            </button>
-            <button class="brand-btn ediya" v-on:click="[nextSlide(), selectBrand('ediya')]">
-              <span></span>
-            </button>
-          </div>
+        <h1 class="title">What do I drink today</h1>
+        <button v-on:click="nextSlide" class="large-btn">시작하기</button>
+      </div>
+      <div class="item brand">
+        <span class="coffee-img"></span>
+        <div class="intro-desc">
+          <p>어디에서 마실까?</p>
         </div>
-        <div class="item name">
-          <span class="coffee-img"></span>
-          <div class="intro-desc">
-            <p>주문자 이름은?</p>
-          </div>
-          <input type="text"
-          class="name-input"
-          placeholder="닉네임을 입력해야 주문할 수 있어요!"
-          v-model.trim="user.name" >
-          <button class="large-btn" 
-          v-bind:disabled="user.name==false" v-on:click="nextSlide">주문하기</button>
-        </div>
-        <my-question 
-        v-for="item in questionsDataArr"
-        v-bind:key="item.id"
-        v-bind:object="item"
-        v-on:click-answer="answerFlavor"
-        v-on:next-question="nextSlide"
-        >
-        </my-question>
-        <div class="item waiting">
-          <span class="coffee-img"></span>
-          <div v-show="resultWaiting" class="waiting-animation">
-            <p>결과 기다리는 중...</p>
-            <div class="bar-animation"></div>
-          </div>
-          <button class="large-btn"
-          v-on:click="resultPage">
-            결과보기
+        <div class="brand-wrap">
+          <button class="brand-btn starbucks" v-on:click="[nextSlide(), selectBrand('starbucks')]">
+            <span></span>
+          </button>
+          <button class="brand-btn ediya" v-on:click="[nextSlide(), selectBrand('ediya')]">
+            <span></span>
           </button>
         </div>
-        <div class="item result">
-          <div class="result-name-wrap">
-            <p class="result-user-name">
-              <span>{{ user.name }} </span> 님께
-            </p>
-            <p>추천하는 오늘의 음료는</p>
-            <p class="result-drink-name">{{ selectedDrink.name }}</p>
-          </div>
-          <img 
-            class="result-img"
-            v-bind:src="selectedDrink.image" v-bind:alt="selectedDrink.name">
-          </img>
-          <p class="result-desc">{{ selectedDrink.desc }}</p>
-          <div class="sns-wrap">
-          </div>
-          <a href="./index.html" class="undo-btn">다시하기</a>
-          <div class="copyright" v-show="resultWaiting">
-            <p>©2021 Joung Yeong-sin all rights reserved.</p>
-            <p class="vue">Built with Vue.js</p>
-          </div>
+      </div>
+      <div class="item name">
+        <span class="coffee-img"></span>
+        <div class="intro-desc">
+          <p>주문자 이름은?</p>
+        </div>
+        <input type="text"
+        class="name-input"
+        placeholder="닉네임을 입력해주세요"
+        v-model.trim="user.name" >
+        <button class="large-btn name" 
+        v-bind:disabled="user.name==''" v-on:click="nextSlide">주문하기</button>
+      </div>
+      <my-question 
+      v-for="item in questionsDataArr"
+      v-bind:key="item.id"
+      v-bind:object="item"
+      v-on:click-answer="answerFlavor"
+      v-on:next-question="nextSlide"
+      >
+      </my-question>
+      <div class="item waiting">
+        <span class="coffee-img"></span>
+        <div v-show="resultWaiting" class="waiting-animation">
+          <p>결과 기다리는 중...</p>
+          <div class="bar-animation"></div>
+        </div>
+        <button class="large-btn"
+        v-on:click="resultPage">
+          결과보기
+        </button>
+      </div>
+      <div class="item result">
+        <div class="result-name-wrap">
+          <p class="result-user-name">
+            <span>{{ user.name }} </span> 님께
+          </p>
+          <p>추천하는 오늘의 음료는</p>
+          <p class="result-drink-name">{{ selectedDrink.name }}</p>
+        </div>
+        <img 
+          class="result-img"
+          v-bind:src="selectedDrink.image" v-bind:alt="selectedDrink.name">
+        </img>
+        <p class="result-desc">{{ selectedDrink.desc }}</p>
+        <div class="sns-wrap">
+        </div>
+        <a href="./index.html" class="undo-btn">다시하기</a>
+        <div class="copyright" v-show="resultWaiting">
+          <p>©2021 Joung Yeong-sin all rights reserved.</p>
+          <p class="vue">Built with Vue.js</p>
         </div>
       </div>
-      <footer id="footer">
-        <p v-show="!resultWaiting">What do I drink today</p>
-        <div class="footer-brand" v-show="user.brand && !resultWaiting" >
-          in 
-          <span v-bind:class="user.brand">{{ user.brand }}</span>
-        </div>
-      </footer>
     </div>
+    <footer id="footer">
+      <p v-show="!resultWaiting">What do I drink today</p>
+      <div class="footer-brand" v-show="user.brand && !resultWaiting" >
+        in 
+        <span v-bind:class="user.brand">{{ user.brand }}</span>
+      </div>
+    </footer>
   </div>
+
 
 
   <script>
