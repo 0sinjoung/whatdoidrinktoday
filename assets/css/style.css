@@ -23,7 +23,8 @@
   --fontSmall: 14px;
   --fontBase: 16px;
   --fontLarge: 18px;
-  --fontTitle: 40px;
+  --fontTitle: 36px;
+  --fontTitleScreen: 48px;
 
   /* margin */
   --baseMargin: 8px;
@@ -192,7 +193,7 @@ body {
   height: 120px;
   padding: 16px;
   margin-bottom: calc(var(--baseMargin) * 2);
-  transition: var(--duration-basic);
+  transition: all var(--duration-basic);
 }
 .brand-btn:hover {
   transform: scale(1.1);
@@ -308,10 +309,22 @@ body {
   background-color: var(--colorWhite);
   box-shadow: 0px 3px 6px #00000029;
 }
+
 .result-desc {
-  max-width: 500px;
+  max-width: 480px;
   word-break: keep-all;
+  font-size: var(--fontSmall);
   margin-bottom: calc(var(--baseMargin) * 6);
+}
+
+.copyright {
+  font-size: var(--fontFooter);
+  color: var(--colorWhite);
+  padding: calc(var(--baseMargin) * 2) 0;
+}
+.copyright .vue {
+  font-weight: var(--fontBold);
+  color: var(--colorPoint);
 }
 
 /* Footer */
@@ -336,14 +349,6 @@ body {
 }
 .footer-brand span {
   text-transform: uppercase;
-}
-
-.copyright {
-  color: var(--colorWhite);
-}
-.copyright .vue {
-  font-weight: var(--fontBold);
-  color: var(--colorPoint);
 }
 
 
@@ -412,11 +417,12 @@ body {
   width: 120px;
   height: 40px;
   line-height: 40px;
+  margin-bottom: calc(var(--baseMargin) * 6);
   text-align: center;
   font-size: var(--fontRegular);
   font-weight: var(--fontBold);
   color: var(--colorWhite);
-  background-color: var(--colorPoint);
+  background-color: var(--colorPointDeep);
   border-radius: calc(var(--baseMargin) * 2);
   box-shadow: 0px 3px 6px #00000029;
   transition: all var(--duration-basic);
@@ -438,12 +444,16 @@ body {
   background-color: var(--colorEdiya);
 }
 
-.prev-btn.starbucks,
+.prev-btn.starbucks {
+  color: var(--colorStarbucksBg);
+}
 .footer-brand .starbucks ,
 .starbucks .question .q-num {
   color: var(--colorStarbucks);
 }
-.prev-btn.ediya,
+.prev-btn.ediya {
+  color: var(--colorEdiyaBg);
+}
 .footer-brand .ediya,
 .ediya .question .q-num{
   color: var(--colorEdiya);
@@ -471,13 +481,23 @@ body {
 
 
 @media screen and (min-width: 768px) {
+  #header {
+    height: 120px;
+    padding: 0 calc(var(--baseMargin) * 5);
+  }
   .item {
-    padding: 20vh 15vh 0;
+    padding: 15vh 5vh 0;
+  }
+  .title {
+    font-size: var(--fontTitleScreen);
   }
   .item.result {
-    padding: 20vh 15vh 0;
+    padding: 15vh 5vh 0;
   }
-  .brand-btn.starbucks {
-    margin-right: calc(var(--baseMargin) * 2);
+  .copyright {
+    position: absolute;
+    padding: 0 5vh 3vh;
+    bottom: 0;
   }
+
 }

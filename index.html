@@ -101,6 +101,10 @@
           <div class="sns-wrap">
           </div>
           <a href="./index.html" class="undo-btn">다시하기</a>
+          <div class="copyright" v-show="resultWaiting">
+            <p>©2021 Joung Yeong-sin all rights reserved.</p>
+            <p class="vue">Built with Vue.js</p>
+          </div>
         </div>
       </div>
       <footer id="footer">
@@ -108,10 +112,6 @@
         <div class="footer-brand" v-show="user.brand && !resultWaiting" >
           in 
           <span v-bind:class="user.brand">{{ user.brand }}</span>
-        </div>
-        <div class="copyright" v-show="resultWaiting">
-          <p>©2021 Joung Yeong-sin all rights reserved.</p>
-          <p class="vue">Built with Vue.js</p>
         </div>
       </footer>
     </div>
