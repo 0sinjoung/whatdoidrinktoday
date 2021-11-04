@@ -305,6 +305,7 @@ body {
 .result-img {
   width: 320px;
   height: 320px;
+  flex-shrink: 0;
   overflow: hidden;
   border-radius: calc(var(--baseMargin) * 4);
   margin-bottom: calc(var(--baseMargin) * 3);
