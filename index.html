@@ -64,14 +64,12 @@
           placeholder="닉네임을 입력해야 주문할 수 있어요!"
           v-model.trim="user.name" >
           <button class="large-btn" 
-          v-bind:class="user.brand"
           v-bind:disabled="user.name==false" v-on:click="nextSlide">주문하기</button>
         </div>
         <my-question 
         v-for="item in questionsDataArr"
         v-bind:key="item.id"
         v-bind:object="item"
-        v-bind:class="user.brand"
         v-on:click-answer="answerFlavor"
         v-on:next-question="nextSlide"
         >
@@ -80,15 +78,14 @@
           <span class="coffee-img"></span>
           <div v-show="resultWaiting" class="waiting-animation">
             <p>결과 기다리는 중...</p>
-            <div class="bar-animation" v-bind:class="user.brand"></div>
+            <div class="bar-animation"></div>
           </div>
           <button class="large-btn"
-          v-bind:class="user.brand"
           v-on:click="resultPage">
             결과보기
           </button>
         </div>
-        <div class="item result" v-bind:class="user.brand">
+        <div class="item result">
           <div class="result-name-wrap">
             <p class="result-user-name">
               <span>{{ user.name }} </span> 님께
