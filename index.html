@@ -8,17 +8,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <title>What do I drink today?</title>
+  <link rel="shortcut icon" href="./assets/image/starbucks_cup.png" type="image/x-icon">
 </head>
 <body>
   <div class="container">
     <div id="app">
       <header id="header">
-        <button>뒤로가기</button>
+        <button 
+        class="prev-btn"
+        v-bind:class="user.brand"
+        v-show="currentIdx > 2 && !resultWaiting" 
+        v-on:click="prevSlide"
+        >
+          <i class="fas fa-arrow-circle-left"></i>
+        </button>
       </header>
-      <div class="slide-wrap">
+      <div class="slide-wrap" v-bind:class="user.brand">
         <div class="item start">
           <span class="coffee-img"></span>
           <div class="intro-desc">
@@ -29,7 +38,7 @@
             <p>오늘 뭐마시지?</p>
           </div>
           <h1 class="title">What do I drink today</h1>
-          <button v-on:click="nextSlide(1)" class="large-btn">시작하기</button>
+          <button v-on:click="nextSlide" class="large-btn">시작하기</button>
         </div>
         <div class="item brand">
           <span class="coffee-img"></span>
@@ -37,10 +46,10 @@
             <p>어디에서 마실까?</p>
           </div>
           <div class="brand-wrap">
-            <button class="brand-btn starbucks" v-on:click="[nextSlide(2), selectBrand('starbucks')]">
+            <button class="brand-btn starbucks" v-on:click="[nextSlide(), selectBrand('starbucks')]">
               <span></span>
             </button>
-            <button class="brand-btn ediya" v-on:click="[nextSlide(2), selectBrand('ediya')]">
+            <button class="brand-btn ediya" v-on:click="[nextSlide(), selectBrand('ediya')]">
               <span></span>
             </button>
           </div>
@@ -52,33 +61,61 @@
           </div>
           <input type="text"
           class="name-input"
-          placeholder="닉네임을 입력해주세요"
+          placeholder="닉네임을 입력해야 주문할 수 있어요!"
           v-model.trim="user.name" >
-          <button class="large-btn" v-bind:disabled="user.name==false" v-on:click="nextSlide(3)">주문하기</button>
-          <p>{{ user.name }}</p>
-          <p>{{ user.brand }}</p>
+          <button class="large-btn" 
+          v-bind:class="user.brand"
+          v-bind:disabled="user.name==false" v-on:click="nextSlide">주문하기</button>
         </div>
         <my-question 
         v-for="item in questionsDataArr"
         v-bind:key="item.id"
         v-bind:object="item"
+        v-bind:class="user.brand"
         v-on:click-answer="answerFlavor"
+        v-on:next-question="nextSlide"
         >
         </my-question>
-        <div class="item">
-          <button v-on:click="resultPage">결과보기</button>
+        <div class="item waiting">
+          <span class="coffee-img"></span>
+          <div v-show="resultWaiting" class="waiting-animation">
+            <p>결과 기다리는 중...</p>
+            <div class="bar-animation" v-bind:class="user.brand"></div>
+          </div>
+          <button class="large-btn"
+          v-bind:class="user.brand"
+          v-on:click="resultPage">
+            결과보기
+          </button>
         </div>
-        <div class="item result">
-          <p>결과출력</p>
-          <p>{{ user.name}}님 주문하신</p>
-          <p>{{ selectedDrink.name }} 나왔습니다</p>
-          <img v-bind:src="selectedDrink.image"></img>
-          <p>{{ selectedDrink.desc }}</p>
+        <div class="item result" v-bind:class="user.brand">
+          <div class="result-name-wrap">
+            <p class="result-user-name">
+              <span>{{ user.name }} </span> 님께
+            </p>
+            <p>추천하는 오늘의 음료는</p>
+            <p class="result-drink-name">{{ selectedDrink.name }}</p>
+          </div>
+          <img 
+            class="result-img"
+            v-bind:src="selectedDrink.image" v-bind:alt="selectedDrink.name">
+          </img>
+          <p class="result-desc">{{ selectedDrink.desc }}</p>
+          <div class="sns-wrap">
+          </div>
+          <a href="./index.html" class="undo-btn">다시하기</a>
         </div>
       </div>
       <footer id="footer">
-        <p>What do I drink today</p>
-        <span class="in-brand">{{ user.brand }}</span>
+        <p v-show="!resultWaiting">What do I drink today</p>
+        <div class="footer-brand" v-show="user.brand && !resultWaiting" >
+          in 
+          <span v-bind:class="user.brand">{{ user.brand }}</span>
+        </div>
+        <div class="copyright" v-show="resultWaiting">
+          <p>©2021 Joung Yeong-sin all rights reserved.</p>
+          <p class="vue">Built with Vue.js</p>
+        </div>
       </footer>
     </div>
   </div>
@@ -92,32 +129,34 @@
           <span class="q-num">Q{{ object.id }}</span>
           <p class="q-desc"> {{ object.question }}</p>
           <div class="answer-btn-wrap">
-            <button v-on:click="clickAnswer(object.answers[0].flavor)">
+            <button v-on:click="[nextQuestion(), clickAnswer(object.answers[0].flavor)]">
               <span>
                 {{object.answers[0].num}}
               </span>
               {{object.answers[0].answer}}
             </button>
-            <button v-on:click="clickAnswer(object.answers[1].flavor)">
+            <button v-on:click="[nextQuestion(), clickAnswer(object.answers[1].flavor)]">
               <span>
                 {{object.answers[1].num}}
               </span>
               {{object.answers[1].answer}}
             </button>
-            <button v-on:click="clickAnswer(object.answers[2].flavor)">
+            <button v-on:click="[nextQuestion(), clickAnswer(object.answers[2].flavor)]">
               <span>
                 {{object.answers[2].num}}
               </span>
               {{object.answers[2].answer}}
             </button>
-            
           </div>
         </div>
       `,
       methods: {
         clickAnswer: function(flavor) {
           this.$emit('click-answer', flavor)
-        }
+        },
+        nextQuestion: function() {
+          this.$emit('next-question')
+        } 
       }
 
     }
@@ -127,6 +166,8 @@
       el: '#app',
       data: {
         questionsDataArr: [],
+        currentIdx: 0,
+        resultWaiting: false,
         user: {
           name: '',
           brand: '',
@@ -135,17 +176,13 @@
             caffein: true,
             milk: true,
             sugar: true
-          }
+          },
+          drinkCode: ''
         },
-        code: '',
         selectedDrink: {
           name: '',
           desc: '',
           img: ''
-        },
-        brandColor: {
-          starbucks: 'green',
-          ediya: 'blue'
         }
       },
       components: {
@@ -157,9 +194,17 @@
         .then(data => (this.questionsDataArr = data))
       },
       methods: {
-        nextSlide: function(n) {
+        nextSlide: function() {
           const slide = document.querySelector('.slide-wrap');
-          slide.style.transform = `translateX(-${100 * n}%)`
+          this.currentIdx += 1;
+          console.log(this.currentIdx);
+          slide.style.transform = `translateX(${-100 * this.currentIdx}%)`
+        },
+        prevSlide: function() {
+          const slide = document.querySelector('.slide-wrap');
+          this.currentIdx -= 1;
+          console.log(this.currentIdx);
+          slide.style.transform = `translateX(${-100 * this.currentIdx}%)`
         },
         selectBrand: function(brand) {
           this.user.brand = brand;
@@ -176,35 +221,33 @@
           }
         },
         makeDrinkCode: function() {
-          this.code = ''
+          this.drinkCode = ''
           for(prop in this.user.flavor) {
             if(prop === 'hot') {
-              this.user.flavor[prop] ? this.code += 'hot' : this.code += 'ice' 
+              this.user.flavor[prop] ? this.drinkCode += 'hot' : this.drinkCode += 'ice' 
             } 
             if(prop === 'caffein') {
-              this.user.flavor[prop] ? this.code += 'cy' : this.code += 'cn' 
+              this.user.flavor[prop] ? this.drinkCode += 'cy' : this.drinkCode += 'cn' 
             }
             if(prop === 'milk') {
-              this.user.flavor[prop] ? this.code += 'my' : this.code += 'mn' 
+              this.user.flavor[prop] ? this.drinkCode += 'my' : this.drinkCode += 'mn' 
             }
             if(prop === 'sugar') {
-              this.user.flavor[prop] ? this.code += 'sy' : this.code += 'sn' 
+              this.user.flavor[prop] ? this.drinkCode += 'sy' : this.drinkCode += 'sn' 
             }
           }
-          console.log(this.code)
         },
-        loadDrink: function() {
+        loadDrinks: function() {
           const brand = this.user.brand;
           return axios.get(`./assets/data/${brand}.json`)
           .then(response => response.data)
           .then(data => data.drinks)
         },
         selectDrink: function() {
-          this.loadDrink()
+          this.loadDrinks()
           .then(drinks => {
             drinks.forEach(el => {
-              console.log(el.code, this.code)
-              if(el.code === this.code) {
+              if(el.code === this.drinkCode) {
                 this.selectedDrink.name = el.name;
                 this.selectedDrink.desc = el.desc;
                 this.selectedDrink.image = el.image;
@@ -212,12 +255,16 @@
             });
           })
         },
-        resultPage: function() {
+        resultPage: function(event) {
+          event.target.classList.add('fadeout');
+          this.resultWaiting = true;
           this.makeDrinkCode();
           this.selectDrink();
+          setTimeout(this.nextSlide, 2500)
         }
       }
     })
   </script>
+
 </body>
 </html>

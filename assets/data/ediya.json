@@ -1,0 +1,101 @@
+{
+  "drinks": [
+    {
+      "code": "hotcymysy",
+      "name": "더블 토피넛 위드샷",
+      "desc": "토피넛 파우더와 마카다미아향에 이디야 블렌드 에스프레소의 깊은 풍미가 더해진 달콤한 음료와 아몬드 브리틀의 바삭한 식감을 즐길 수 있는 커피 음료",
+      "image": "./assets/image/ediya/hotcymysy.png"
+    },
+    {
+      "code": "hotcymysn",
+      "name": "카페 라떼",
+      "desc": "진한 에스프레소와 부드러운 우유가 만나 고소한 풍미를 더하는 메뉴 가장 대중적인 메뉴",
+      "image": "./assets/image/ediya/hotcymysn.png"
+    },
+    {
+      "code": "hotcymnsy",
+      "name": "아인슈페너",
+      "desc": "에스프레소에 아이리쉬크림향이 어우러지고 부드러운 크림이 더해져 깊은 풍미를 즐길 수 있는 음료",
+      "image": "./assets/image/ediya/hotcymnsy.png"
+    },
+    {
+      "code": "hotcymnsn",
+      "name": "아메리카노",
+      "desc": "구운 견과류의 고소한 향미와 다크초콜렛의 Bitter sweet 깊고 깔끔한 애프터테이스트가 특징인 이디야의 대표음료",
+      "image": "./assets/image/ediya/hotcymnsn.png"
+    },
+    {
+      "code": "hotcnmysy",
+      "name": "고구마 라떼",
+      "desc": "호박고구마를 활용하여 달콤하고 고소한 고구마의 풍미가 진하게 느껴지는 음료",
+      "image": "./assets/image/ediya/hotcnmysy.png"
+    },
+    {
+      "code": "hotcnmysn",
+      "name": "이곡 라떼",
+      "desc": "몸에 이로운 곡물이 들어가 든든하고 포만감을 주는 메뉴, 한끼 식사 대용으로도 충분한 음료",
+      "image": "./assets/image/ediya/hotcnmysn.png"
+    },
+    {
+      "code": "hotcnmnsy",
+      "name": "유자 피나콜라다",
+      "desc": "유자청에 사과, 파인애플, 히비스커스, 로즈힙 열매, 코코넛 등을 넣어 신맛에 달콤한 향의 밸런스가 좋은 블렌딩 티",
+      "image": "./assets/image/ediya/hotcnmnsy.png"
+    },
+    {
+      "code": "hotcnmnsn",
+      "name": "어린잎 녹차(작설차)",
+      "desc": "땅끝마을 해남의 다원에서 자란 어린 찻잎을 채엽한 부드러운 맛이 특징이 녹차",
+      "image": "./assets/image/ediya/hotcnmnsn.png"
+    },
+    {
+      "code": "icecymysy",
+      "name": "버블 흑당 콜드브루",
+      "desc": "이디야의 밸런스 잡힌 콜드브루에 진하고 달콤한 흑당과 쫄깃한 버블이 어우러진 커피음료",
+      "image": "./assets/image/ediya/icecymysy.png"
+    },
+    {
+      "code": "icecymysn",
+      "name": "콜드브루 라떼",
+      "desc": "콜드브루의 깔끔하고 쌉싸름한 풍미가 고소한 우유와 만나 누구나 부담없이 즐길 수 있는 음료",
+      "image": "./assets/image/ediya/icecymysn.png"
+    },
+    {
+      "code": "icecymnsy",
+      "name": "아인슈페너",
+      "desc": "에스프레소에 아이리쉬크림향이 어우러지고 부드러운 크림이 더해져 깊은 풍미를 즐길 수 있는 음료",
+      "image": "./assets/image/ediya/icecymnsy.png"
+    },
+    {
+      "code": "icecymnsn",
+      "name": "카페 아메리카노",
+      "desc": "구운 견과류의 고소한 향미와 다크초콜렛의 Bitter sweet 깊고 깔끔한 애프터테이스트가 특징인 이디야의 대표음료",
+      "image": "./assets/image/ediya/icecymnsn.png"
+    },
+    {
+      "code": "icecnmysy",
+      "name": "달고나 라떼",
+      "desc": "달콤한 달고나와 우유가 조화롭게 어우러져, 달고나 분태의 바삭한 식감과 함께 즐길 수 있는 제품",
+      "image": "./assets/image/ediya/icecnmysy.png"
+    },
+    {
+      "code": "icecnmysn",
+      "name": "카라멜 프로틴 밀크",
+      "desc": "달콤한 카라멜과 바삭한 그래놀라가 어우러지는 맛있는 한 잔으로 프로틴 30g을 섭취할 수 있는 음료",
+      "image": "./assets/image/ediya/icecnmysn.png"
+    },
+    {
+      "code": "icecnmnsy",
+      "name": "꿀복숭아 플랫치노",
+      "desc": "복숭아의 리얼한 풍미와 꿀의 달콤함이 최적의 조화를 이룬 달콤하고 시원한 플랫치노",
+      "image": "./assets/image/ediya/icecnmnsy.png"
+    },
+    {
+      "code": "icecnmnsn",
+      "name": "로즈 자스민 티",
+      "desc": "6번 이상 자스민 꽃을 첨가하여 만든 수제 펄 자스민차에 장미꽃잎을 첨가한 아침, 저녁으로 부담없이 즐길 수 있는 향기로운 차",
+      "image": "./assets/image/ediya/icecnmnsn.png"
+    }
+
+  ]
+}

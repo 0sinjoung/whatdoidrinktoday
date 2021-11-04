@@ -7,9 +7,12 @@
   --colorMainDeep: #959BA9;
   --colorPoint: #9B3239;
   --colorPointDeep: #8C232C;
-  --colorTest: #A9C8B8;
   --colorLightGrey: #F1F1F5;
   --fontColorBlack: #191919;
+  --colorStarbucks: #0E7042;
+  --colorStarbucksBg: #2C2A29;
+  --colorEdiya: #022E6C;
+  --colorEdiyaBg: #7A7E8D;
 
   /* font weight*/
   --fontRegular: 400;
@@ -68,10 +71,7 @@ a {
 }
 
 button {
-  display: inline-block;
-  background-color: transparent;
-  border: none;
-  padding: 0;
+  all: unset;
   cursor: pointer;
 }
 
@@ -93,6 +93,7 @@ body {
   font-size: var(--fontBase);
   font-weight: var(--fontRegular);
 	line-height: 1.4;
+  color: var(--fontColorBlack);
   cursor: default;
 }
 
@@ -109,34 +110,20 @@ body {
   width: 100%;
   height: 100%;
   background-color: var(--colorMain);
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 /* Header */
 #header {
+  width: 100%;
+  height: 80px;
+  padding: 0 calc(var(--baseMargin) * 3);
   position: fixed;
   top: 0;
   left: 0;
   z-index: 100;
-  width: 100%;
-  height: 80px;
-}
-#footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
-  width: 100%;
-  height: 80px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: var(--fontFooter);
-  color: var(--colorGrey);
-}
-
-.in-brand {
-  display: block;
 }
 
 /* Slide */
@@ -153,26 +140,35 @@ body {
 
 .item {
   position: relative;
-  padding: 20vh 24px 0;
-  margin-right: 5px;
+  padding: 20vh 5vh 0;
   width: 100%;
   height: 100%;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--colorMain);
   background-image: url(../image/bg.png);
   background-size: auto;
   background-position: center;
+  text-align: center;
 }
 
 .coffee-img {
   display: inline-block;
   width: 50px;
   height: 60px;
-  margin-bottom: calc(var(--baseMargin) * 2);
+  margin-bottom: calc(var(--baseMargin) * 3);
   background-image: url(../image/starbucks_cup.png);
   background-size: contain;
+  animation: calc(var(--duration-basic) * 3) infinite alternate coffeeImgAni;
+}
+@keyframes coffeeImgAni {
+  0% {transform: rotate(0) translateY(0)}
+  25% {transform: rotate(0) translateY(5px)}
+  50% {transform: rotate(3deg) translateY(5px)}
+  75% {transform: rotate(-3deg) translateY(5px)}
+  100% {transform: rotate(3deg) translateY(5px)}
 }
 
 .intro-desc {
@@ -191,15 +187,15 @@ body {
 }
 
 /* Brand */
-.brand-wrap {
-
-}
-
 .brand-btn {
   width: 120px;
   height: 120px;
   padding: 16px;
   margin-bottom: calc(var(--baseMargin) * 2);
+  transition: var(--duration-basic);
+}
+.brand-btn:hover {
+  transform: scale(1.1);
 }
 .brand-btn span {
   display: inline-block;
@@ -208,13 +204,13 @@ body {
   border-radius: 50%;
   background-size: cover;
 }
-.starbucks {
+.brand-btn.starbucks {
   margin-right: calc(var(--baseMargin) * 2);
 }
-.starbucks span {
+.brand-btn.starbucks span {
   background-image: url(../image/starbucks_logo.png);
 }
-.ediya span {
+.brand-btn.ediya span {
   background-image: url(../image/ediya_logo.png);
 }
 
@@ -223,11 +219,13 @@ body {
 .name-input {
   width: 240px;
   height: 64px;
+  font-size: var(--fontSmall);
   text-align: center;
   border-radius: calc(var(--baseMargin) * 2);
   box-shadow: inset 3px 3px 6px #00000029;
   margin-bottom: calc(var(--baseMargin) * 10);
 }
+
 
 /* Question */
 .answer-btn-wrap {
@@ -248,7 +246,122 @@ body {
   margin-bottom: calc(var(--baseMargin) * 8);
 }
 
+/* Result waiting */
+.waiting .coffee-img {
+  margin-bottom: calc(var(--baseMargin) * 6);
+}
+.waiting-animation {
+  margin-bottom: calc(var(--baseMargin) * 2);
+  text-align: center;
+}
+
+.waiting-animation p {
+  margin-bottom: calc(var(--baseMargin) * 4);
+}
+
+.bar-animation {
+  width: 240px;
+  height: 20px;
+  position: relative;
+  border: 2px solid var(--colorPoint);
+  border-radius: calc(var(--baseMargin) * 2);
+  overflow: hidden;
+}
+.bar-animation::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--baseMargin) * 2);
+  background-color: var(--colorPoint);
+  transform: translateX(-100%);
+  animation: calc(var(--duration-basic) * 3) ease-in  var(--duration-basic) forwards runProgressBar;
+}
+@keyframes runProgressBar {
+  0% {transform: translateX(-100%)}
+  50% {transform: translateX(-70%)}
+  100% {transform: translateX(0)}
+}
+
+
+/* Result */
+.item.result {
+  background-image: none;
+  color: var(--colorWhite);
+  background-color: var(--colorMainDeep);
+}
+.result-user-name span {
+  font-weight: var(--fontBold);
+}
+.result-drink-name {
+  font-size: var(--fontTitle);
+  font-weight: var(--fontBold);
+  margin: calc(var(--baseMargin) * 2) 0;
+}
+.result-img {
+  width: 320px;
+  height: 320px;
+  overflow: hidden;
+  border-radius: calc(var(--baseMargin) * 4);
+  margin-bottom: calc(var(--baseMargin) * 3);
+  background-color: var(--colorWhite);
+  box-shadow: 0px 3px 6px #00000029;
+}
+.result-desc {
+  max-width: 500px;
+  word-break: keep-all;
+  margin-bottom: calc(var(--baseMargin) * 8);
+}
+
+/* Footer */
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: var(--fontFooter);
+  color: var(--colorGrey);
+}
+
+.footer-brand {
+  font-weight: var(--fontBold);
+}
+.footer-brand span {
+  text-transform: uppercase;
+}
+
+.copyright {
+  color: var(--colorWhite);
+}
+.copyright .vue {
+  font-weight: var(--fontBold);
+  color: var(--colorPoint);
+}
+
+
 /* button */
+.prev-btn {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  color: var(--colorPoint);
+}
+.prev-btn i {
+  font-size: 32px;
+}
+.prev-btn:hover {
+  transform: scale(1.1);
+}
+
 .large-btn {
   width: 240px;
   height: 64px;
@@ -262,17 +375,13 @@ body {
   transition: all var(--duration-basic);
 }
 
-.large-btn:hover {
-  background-color: var(--colorPointDeep);
-  box-shadow: none;
-}
-
 .answer-btn-wrap button {
   width: 240px;
   height: 64px;
   text-align: left;
   font-size: var(--fontLarge);
   font-weight: var(--fontRegular);
+  color: var(--colorBlack);
   background-color: var(--colorWhite);
   border-radius: calc(var(--baseMargin) * 2);
   box-shadow: 0px 3px 6px #00000029;
@@ -296,8 +405,67 @@ body {
   margin: 0 calc(var(--baseMargin) * 2);
 }
 
+.large-btn.fadeout {
+  display: none;
+}
 
+.undo-btn {
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: var(--fontRegular);
+  font-weight: var(--fontBold);
+  color: var(--colorWhite);
+  background-color: var(--colorPoint);
+  border-radius: calc(var(--baseMargin) * 2);
+  box-shadow: 0px 3px 6px #00000029;
+  transition: all var(--duration-basic);
+}
 
+.large-btn:hover,
+.undo-btn:hover {
+  background-color: var(--colorPointDeep);
+  box-shadow: none;
+}
 
+/* BrandColor */
+.large-btn.starbucks,
+.question.starbucks .answer-btn-wrap button span {
+  background-color: var(--colorStarbucks);
+}
+.large-btn.ediya,
+.question.ediya .answer-btn-wrap button span {
+  background-color: var(--colorEdiya);
+}
 
+.prev-btn.starbucks,
+.footer-brand .starbucks,
+.question.starbucks .q-num {
+  color: var(--colorStarbucks);
+}
+.prev-btn.ediya,
+.footer-brand .ediya,
+.question.ediya .q-num{
+  color: var(--colorEdiya);
+}
 
+.result.starbucks {
+  background-color: var(--colorStarbucksBg);
+}
+.result.ediya {
+  background-color: var(--colorEdiyaBg);
+}
+
+.bar-animation.starbucks {
+  border: 2px solid var(--colorStarbucks);
+}
+.starbucks.bar-animation::before {
+  background-color: var(--colorStarbucks);
+}
+.bar-animation.ediya {
+  border: 2px solid var(--colorEdiya);
+}
+.ediya.bar-animation::before {
+  background-color: var(--colorEdiya);
+}
