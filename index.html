@@ -59,6 +59,8 @@
           <p>주문자 이름은?</p>
         </div>
         <input type="text"
+        v-on:focus="inputFocus = true"
+        v-on:blur="inputFocus = false"
         class="name-input"
         placeholder="닉네임을 입력해주세요"
         v-model.trim="user.name" >
@@ -106,7 +108,7 @@
         </div>
       </div>
     </div>
-    <footer id="footer">
+    <footer id="footer" v-show="!inputFocus || clientWidth > 768">
       <p v-show="!resultWaiting">What do I drink today</p>
       <div class="footer-brand" v-show="user.brand && !resultWaiting" >
         in 
@@ -118,6 +120,8 @@
 
 
   <script>
+    const clientWidth = window.outerWidth;
+    
     const myQuestion = {
       props: ["object"],
       template: `
@@ -164,6 +168,8 @@
         questionsDataArr: [],
         currentIdx: 0,
         resultWaiting: false,
+        inputFocus: false,
+        clientWidth: clientWidth,
         user: {
           name: '',
           brand: '',
