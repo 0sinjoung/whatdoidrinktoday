@@ -95,8 +95,8 @@ new Vue({
     2. 뒤로가기 버튼을 통해 데이터를 덮어쓸 수 있습니다
 5. **user.drinkCode**는 결과보기 버튼을 누르면 생성됩니다
 <img width="276" alt="스크린샷 2021-11-05 오후 3 20 33" src="https://user-images.githubusercontent.com/89737184/140475562-374546ec-45f4-49df-a520-f739e79ee39f.png">
-
 <br/>
+
 ### ◾️ 음료의 결정
 
 ![result72](https://user-images.githubusercontent.com/89737184/140475637-3c8ad4b8-8338-4fdb-9e04-a18dfd3b6339.png)
