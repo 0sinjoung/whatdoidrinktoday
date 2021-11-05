@@ -199,13 +199,11 @@
         nextSlide: function() {
           const slide = document.querySelector('.slide-wrap');
           this.currentIdx += 1;
-          console.log(this.currentIdx);
           slide.style.transform = `translateX(${-100 * this.currentIdx}%)`
         },
         prevSlide: function() {
           const slide = document.querySelector('.slide-wrap');
           this.currentIdx -= 1;
-          console.log(this.currentIdx);
           slide.style.transform = `translateX(${-100 * this.currentIdx}%)`
         },
         selectBrand: function(brand) {
@@ -218,7 +216,6 @@
           for(prop in this.user.flavor) {
             if(prop === selectedFlavor) {
               this.user.flavor[prop] = JSON.parse(selectedValue);
-              console.log(prop, this.user.flavor[prop])
             }
           }
         },
