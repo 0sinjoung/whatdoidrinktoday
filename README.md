@@ -19,9 +19,9 @@
 ## 프로젝트 소개
 
 ### 💡 아이디어
-<br/>
 - 카페에서 주문을 하며 매일 마시는 음료 외에 다른 음료가 마시고 싶을 때 현재 나의 기호를 반영해서 메뉴를 추천해주는 심리 테스트가 있으면 좋겠다는 생각이 들었습니다.
 - 카페 고객 입장에서는 음료를 추천받고, 기업 입장에서는 주력 메뉴나 신제품을 홍보할 수 있습니다.
+<br/>
 
 ### 👤 사용 대상
 
@@ -98,17 +98,21 @@ new Vue({
 
 <br/>
 ### ◾️ 음료의 결정
+
 ![result72](https://user-images.githubusercontent.com/89737184/140475637-3c8ad4b8-8338-4fdb-9e04-a18dfd3b6339.png)
+
 1. n가지 질문에 따라 Boolean 값을 반환하여 음료를 반환하므로 경우의 수는 n²입니다
 2. 질문에 해당하는 음료는 각각 고유 코드를 갖습니다. 고유 코드는 결과보기 버튼을 누르면 user.flavor 데이터를 기반으로 생성됩니다. 값은 user.drinkCode에 저장됩니다
 3. user.brand에 저장된 브랜드명에 해당하는 json 파일을 읽어옵니다
 4. json 파일에 저장된 code key를 순회하여 user.drinkCode와 동일한 데이터를 찾습니다. 이때 시간 복잡도는 O(n)입니다
 5. 해당하는 음료의 정보를 뷰 인스턴스 데이터 selectedDirnk의 값으로 저장하고 결과 페이지를 반환합니다
-
 <br/>
+
 ### ◾️ 확장성
 ![starbucksmocup72](https://user-images.githubusercontent.com/89737184/140475672-dc9341c8-4622-4e57-87ac-f8cc3df38c96.png)
+
 ![ediya72](https://user-images.githubusercontent.com/89737184/140475723-0785154d-d755-49c4-a68c-ec43169ab211.png)
+
 1. 각 브랜드의 데이터는 json 파일로 관리됩니다
 2. 언제든 다른 브랜드를 추가하여 확장할 수 있습니다
 3. user.brand 데이터를 사용해 브랜드 별 메인 컬러를 다르게 적용합니다
