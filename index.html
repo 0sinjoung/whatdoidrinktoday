@@ -96,7 +96,7 @@
         </div>
         <img 
           class="result-img"
-          v-bind:src="selectedDrink.image" v-bind:alt="selectedDrink.name">
+          v-bind:src="selectedDrink.img" v-bind:alt="selectedDrink.name">
         </img>
         <p class="result-desc">{{ selectedDrink.desc }}</p>
         <div class="sns-wrap">
@@ -220,19 +220,19 @@
           }
         },
         makeDrinkCode: function() {
-          this.drinkCode = ''
+          this.user.drinkCode = ''
           for(prop in this.user.flavor) {
             if(prop === 'hot') {
-              this.user.flavor[prop] ? this.drinkCode += 'hot' : this.drinkCode += 'ice' 
+              this.user.flavor[prop] ? this.user.drinkCode += 'hot' : this.user.drinkCode += 'ice' 
             } 
             if(prop === 'caffein') {
-              this.user.flavor[prop] ? this.drinkCode += 'cy' : this.drinkCode += 'cn' 
+              this.user.flavor[prop] ? this.user.drinkCode += 'cy' : this.user.drinkCode += 'cn' 
             }
             if(prop === 'milk') {
-              this.user.flavor[prop] ? this.drinkCode += 'my' : this.drinkCode += 'mn' 
+              this.user.flavor[prop] ? this.user.drinkCode += 'my' : this.user.drinkCode += 'mn' 
             }
             if(prop === 'sugar') {
-              this.user.flavor[prop] ? this.drinkCode += 'sy' : this.drinkCode += 'sn' 
+              this.user.flavor[prop] ? this.user.drinkCode += 'sy' : this.user.drinkCode += 'sn' 
             }
           }
         },
@@ -246,10 +246,10 @@
           this.loadDrinks()
           .then(drinks => {
             drinks.forEach(el => {
-              if(el.code === this.drinkCode) {
+              if(el.code === this.user.drinkCode) {
                 this.selectedDrink.name = el.name;
                 this.selectedDrink.desc = el.desc;
-                this.selectedDrink.image = el.image;
+                this.selectedDrink.img = el.image;
               }
             });
           })
